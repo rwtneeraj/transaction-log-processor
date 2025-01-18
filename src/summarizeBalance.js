@@ -15,4 +15,12 @@ export const getBalanceOfCurrId = function (transaction) {
   }
 };
 
-// const update
+
+export const updateBalances = function (balances, transaction) {
+  const currentBalance = getBalanceOfCurrId(transaction);
+  const previusBalance = balances[transaction.id] || 0;
+  balances[transaction.id] = previusBalance + currentBalance;
+  
+  return balances;
+}
+
