@@ -12,4 +12,10 @@ describe("testing getBalanceOfCurrId", () => {
     const sampleData = { type: "credit", amount: 500 };
     assertEquals(getBalanceOfCurrId(sampleData),500)
   });
+
+  test("should throw error , if account type is invalid",() =>{
+    const sampleData = { id : "TXN001", type: "Null", amount: 500 };
+    const expectedOutput = `Transaction ID TXN001 has invalid data: invalid type`
+    assertEquals(getBalanceOfCurrId(sampleData),expectedOutput)
+  });
 })
