@@ -1,9 +1,20 @@
+import { parseFile } from "./parseFile.js";
+import { updateBalances } from "./accountBalances.js";
+import { updateCreditAndDebit } from "./creditAndDebit.js";
+import { financialSummary } from "./template.js";
 
-const readJsonFile = file => Deno.readTextFileSync(file);
-
-export const parseFile = (file) => {
-  const content = readJsonFile(file);
-  return JSON.parse(content);
+const main = function () {
+  const path = "../data/transactionLog.json";
+  const content = parseFile(path);
+  const summary = financialSummary();
+  
+  content.transactions.forEach((transaction) => {
+    summary['balances'] = updateBalances(summary['balances'], transaction);
+    summary['totalCreditAndDebit'] = updateCreditAndDebit(
+      summary['totalCreditAndDebit'],
+      transaction
+    );
+  });
 };
 
-// parseFile("../data/transactionLog.json");
+main();
