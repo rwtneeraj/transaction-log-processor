@@ -1,7 +1,6 @@
 import { describe, test } from "jsr:@std/testing/bdd";
 import { assertEquals } from "jsr:@std/assert";
 import {updateAmount,updateCreditAndDebit } from "../src/creditAndDebit.js";
-import { assert } from "jsr:@std/assert@^1.0.10/assert";
 
 describe("testing updateAmount()", () => {
   test("should update  balance of current id. if transaction is there.", () => {
@@ -29,5 +28,18 @@ describe("testing for updateCreditAndDebit ", () => {
     const oldBalanceInfo = { "credit": {}, "debit": {} };
     const expectedOutput = {"credit":{},debit:{"T09" : 500.00}}
     assertEquals(updateCreditAndDebit(oldBalanceInfo,sampleData),expectedOutput)
+  });
+
+  test("should return same account balance, if transaction is invalid type", () => {
+    const sampleData = { account: "T09", type :"", "amount": 500.00,}
+    const oldBalanceInfo = { "credit": {}, "debit": {} };
+    const expectedOutput = {credit:{},debit:{}}
+    assertEquals(updateCreditAndDebit(oldBalanceInfo,sampleData),expectedOutput)
+  });
+
+  test("should return same account balance, if no transaction in file", () => {
+    const oldBalanceInfo = { "credit": {}, "debit": {} };
+    const expectedOutput = {credit:{},debit:{}}
+    assertEquals(updateCreditAndDebit(oldBalanceInfo,),expectedOutput)
   });
 })
