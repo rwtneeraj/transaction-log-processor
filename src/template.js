@@ -4,18 +4,24 @@ export const templateForTagSummary = function () {
     groceries: 0,
     bonus: 0,
     rent: 0,
-    entertainmentMovies: 0,
-    shoppingClothes: 0,
+    "entertainment/movies": 0,
+    "shopping/clothes": 0,
     snacks: 0,
     freelance: 0,
     refund: 0,
+    "utilities/electricity": 0
   };
 };
 
 export const financialSummary = function () {
   return {
     balances: {},
-    totalCreditAndDebit: { credit: {}, debit: {} },
-    total: { totalTransaction: 0, creditTransaction: 0, debitTransaction: 0 },
+    creditDebit: { credit: {}, debit: {} },
+    breakdown: {
+      totalTransaction: 0,
+      creditTransaction: 0,
+      debitTransaction: 0,
+    },
+    tags: {},
   };
 };

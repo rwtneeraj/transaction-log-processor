@@ -1,33 +1,33 @@
-export const updateCreditAmount = function (credit, transaction) {
-  const { id, amount } = transaction;
-  const creditDetail = { ...credit };
+export const updateAmount = function (accountsBalance,transaction) {
+  const detail = { ...accountsBalance };
+  const { account, amount } = transaction;
 
-  creditDetail[id] = (creditDetail[id] || 0) + amount;
+  detail[account] = (detail[account] || 0) + amount;
+  return detail;
+ }
 
-  return creditDetail;
-};
 
-export const updateDebitAmount = function (debit, transaction) {
-  const debitDetail = { ...debit };
-  const { id, amount } = transaction;
-
-  debitDetail[id] = (debitDetail[id] || 0) + amount;
-  return debitDetail;
-};
-
-export const updateCreditAndDebit = function (summary, transaction) {
-  const { credit, debit } = summary;
+export const updateCreditAndDebit = function (summeries, transaction) {
+  if (!transaction) {
+    console.log("Error: Unable to process transactions.invalid transaction.")
+    return summeries;
+  }
+  
+  const { credit, debit } = summeries;
   const { type } = transaction;
 
   if (type === "debit") {
-    summary.debit = updateDebitAmount(debit, transaction);
-    return summary;
+    summeries.debit = updateAmount(debit, transaction);
+    return summeries;
   }
+
   if (type === "credit") {
-    summary.credit = updateCreditAmount(credit, transaction);
-    return summary;
+    summeries.credit = updateAmount(credit, transaction);
+    return summeries;
   }
 
   console.log("Invalid type:");
-  return summary;
+  return summeries;
 };
+
+
