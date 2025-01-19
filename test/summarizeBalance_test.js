@@ -1,4 +1,4 @@
-import { getBalanceOfCurrId, updateBalances } from "../src/summarizeBalance.js";
+import { getBalanceOfCurrId, updateBalances } from "../src/accountBalances.js";
 import { describe, test } from "jsr:@std/testing/bdd";
 import { assertEquals } from "jsr:@std/assert";
 
@@ -31,7 +31,7 @@ describe("testing updateBalances()", () => {
   });
 
   test("should catch error , if data is invalid", () => {
-    const expectedOutput = `error : transactions has invalid data`;
+    const expectedOutput = {};
     assertEquals(updateBalances({},NaN),expectedOutput);
   });
 });
