@@ -16,7 +16,6 @@ const main = function () {
     creditDebit = updateCreditAndDebit(creditDebit, transaction);
     breakdown = updateTransactionBreakdown(breakdown, transaction);
     tags = getTagSummary(tags,transaction);
-    
   });
 
   console.log(summary)

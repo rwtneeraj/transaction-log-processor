@@ -18,15 +18,14 @@ export const getBalanceOfCurrId = function (transaction) {
 };
 
 export const updateBalances = function (balances, transaction) {
-
   try {
     if (!transaction) {
       throw `invalid data`;
     }
 
     const currentBalance = getBalanceOfCurrId(transaction);
-    const previusBalance = balances[transaction.id] || 0;
-    balances[transaction.id] = previusBalance + currentBalance;
+    const previusBalance = balances[transaction.account] || 0;
+    balances[transaction.account] = previusBalance + currentBalance;
 
     return balances;
   } catch (error) {

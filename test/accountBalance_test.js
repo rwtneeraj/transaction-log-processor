@@ -14,19 +14,19 @@ describe("testing getBalanceOfCurrId", () => {
   });
 
   test("should throw error , if account type is invalid", () => {
-    const sampleData = { id: "TXN001", type: "Null", amount: 500 };
+    const sampleData = { account: "TXN001", type: "Null", amount: 500 };
     assertEquals(getBalanceOfCurrId(sampleData), 0);
   });
 });
 
 describe("testing updateBalances()", () => {
   test("should decrease the balance of user, if transaction type is debit", () => {
-    const sampleData = { id: "TXN001", type: "debit", amount: 1200.0 };
+    const sampleData = { account: "TXN001", type: "debit", amount: 1200.0 };
     assertEquals(updateBalances({ TXN001: 1500 }, sampleData), { TXN001: 300 });
   });
 
   test("should decrease the balance of user, if transaction type is debit", () => {
-    const sampleData = { id: "TXN002", type: "credit", amount: 1200.0 };
+    const sampleData = { account: "TXN002", type: "credit", amount: 1200.0 };
     assertEquals(updateBalances({ TXN002: 0 }, sampleData), { TXN002: 1200 });
   });
 

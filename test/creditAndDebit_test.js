@@ -14,7 +14,6 @@ describe("testing updateAmount()", () => {
   })
 });
 
-
 describe("testing for updateCreditAndDebit ", () => {
   test("should update account balance in credit ,if transaction is credit", () => {
     const sampleData = { account : "T09", type: "credit", "amount": 500.00,}
